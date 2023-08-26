@@ -36,6 +36,4 @@ public class FileTrasportReader implements TransportFileReader {
         }
         throw new TransportReaderException("Resource from file [%s] is null".formatted(fileName));
     }
-
-
 }

@@ -14,10 +14,6 @@ import java.util.List;
 public class JsonDocumentParser implements DocumentParser {
     private List<Transport> transportList;
 
-    public List<Transport> getTransportList() {
-        return transportList;
-    }
-
     @Override
     public List<Transport> parse(final String content) throws DocumentParserException {
         transportList = new ArrayList<>();

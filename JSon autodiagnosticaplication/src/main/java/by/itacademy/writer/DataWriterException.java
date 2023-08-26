@@ -2,7 +2,7 @@ package by.itacademy.writer;
 
 import java.io.IOException;
 
-public class DataWriterException extends Exception{
+public class DataWriterException extends Exception {
     public DataWriterException(IOException message) {
         super(message);
     }

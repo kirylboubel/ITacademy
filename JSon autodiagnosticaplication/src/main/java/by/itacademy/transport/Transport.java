@@ -4,15 +4,15 @@ public class Transport {
     private TransportTypeAndCost transportTypeAndCost;
     private String transoprtName;
 
-
     public TransportTypeAndCost getTransportTypeAndCost() {
         return transportTypeAndCost;
     }
 
-    public String getTransportType(){
+    public String getTransportType() {
         return transportTypeAndCost.getDescription();
     }
-    public int getTransportTax(){
+
+    public int getTransportTax() {
         return transportTypeAndCost.getTaxValue();
     }
 
@@ -31,6 +31,4 @@ public class Transport {
                 + this.transoprtName + ">|<"
                 + this.transportTypeAndCost.getTaxValue() + ">";
     }
-
-
 }

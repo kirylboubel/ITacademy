@@ -1,7 +1,6 @@
 package by.itacademy.delimiter.impl;
 
 import by.itacademy.delimiter.Delimiter;
-import by.itacademy.delimiter.ListDelimiterException;
 import by.itacademy.transport.Transport;
 
 import java.util.ArrayList;
@@ -24,9 +23,10 @@ public class ListDelimiter implements Delimiter {
     }
 
     @Override
-    public void divideList(final List<Transport> transportList) throws ListDelimiterException {
-    rightTransportList = new ArrayList<>();
-    wrongTransportList = new ArrayList<>();
+    public void divideList(final List<Transport> transportList) {
+        rightTransportList = new ArrayList<>();
+        wrongTransportList = new ArrayList<>();
+
         for (Transport transport : transportList) {
             if (PATTERN_RIGHT_VEHICLE.test(transport.getTransoprtName())) {
                 rightTransportList.add(transport);
