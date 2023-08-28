@@ -10,6 +10,10 @@ import java.io.InputStreamReader;
 public class FileTrasportReader implements TransportFileReader {
     private final String fileName;
 
+    public String getFileName() {
+        return fileName;
+    }
+
     public FileTrasportReader(String fileName) {
         this.fileName = fileName;
     }
