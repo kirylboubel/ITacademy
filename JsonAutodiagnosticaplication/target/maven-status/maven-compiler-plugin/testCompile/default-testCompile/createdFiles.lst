@@ -1,0 +1,4 @@
+by\itacademy\delimiter\impl\ListDelimiterTest.class
+by\itacademy\parser\impl\JsonDocumentParserTest.class
+by\itacademy\writer\impl\JsonFileWriterTest.class
+by\itacademy\reader\impl\FileTrasportReaderTest.class
