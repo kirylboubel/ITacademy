@@ -1,4 +1,0 @@
--------------------------------------------------------------------------------
-Test set: by.itacademy.reader.impl.FileTrasportReaderTest
--------------------------------------------------------------------------------
-Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.012 s -- in by.itacademy.reader.impl.FileTrasportReaderTest
