@@ -30,17 +30,17 @@ public class JsonFileWriterWithAnatation implements AnatationDataWriter {
     }
 
     @Override
-    public <T> T dataWrite(List<Transport> rightTransportList, Comparator<Transport> comparator) throws NoSuchMethodException {
+    public <T> T dataWrite(List<Transport> rightTransportList, Comparator<Transport> comparator, final Class<T> clazz) throws NoSuchMethodException {
         try {
 
             for (Transport transport : rightTransportList) {
-                final var result = transport.getClass().getDeclaredConstructor().newInstance();
-                for (final Field field : transport.getClass().getDeclaredFields()) {
+                final T result = clazz.getDeclaredConstructor().newInstance();
+                for (final Field field : clazz.getDeclaredFields()) {
                     for (final Annotation annotation : field.getDeclaredAnnotations()) {
                         if (!(annotation instanceof final Parametr parametr)) {
                             continue;
                         }
-                        Object value = transport.getClass().getName();
+                        Object value = clazz.getName();
 
                         field.setAccessible(true);
                         if (value != null) {

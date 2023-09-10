@@ -7,5 +7,5 @@ import java.util.List;
 import java.util.concurrent.TransferQueue;
 
 public interface AnatationDataWriter {
-    <T> T dataWrite(List<Transport> rightTransportList, Comparator<Transport> comparator) throws NoSuchMethodException;
+    <T> T dataWrite(List<Transport> rightTransportList, Comparator<Transport> comparator, Class<T> clazz) throws NoSuchMethodException;
 }

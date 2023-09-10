@@ -33,7 +33,7 @@ public class Autodiagnostic {
             final Comparator<Transport> comparator = sortingReader.readSorting();
             final AnatationDataWriter jsonFileWriter = new JsonFileWriterWithAnatation("src/main/resources/procesed-transport.json",
                     "src/main/resources/invalid-transport.json");
-            jsonFileWriter.dataWrite(righViechleList, comparator);
+            jsonFileWriter.dataWrite(righViechleList, comparator, Transport.class);
 
 //            final DataWriter jsonFileWriter = new JsonFileWriter("src/main/resources/procesed-transport.json",
 //                    "src/main/resources/invalid-transport.json");
