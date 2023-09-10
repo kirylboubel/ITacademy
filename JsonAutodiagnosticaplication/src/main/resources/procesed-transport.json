@@ -1,0 +1,32 @@
+[
+  {
+    "cost": 30,
+    "name": "Sprinter264",
+    "type": "микроавтобус"
+  },
+  {
+    "cost": 30,
+    "name": "Transporter T5",
+    "type": "микроавтобус"
+  },
+  {
+    "cost": 20,
+    "name": "Audi Q7",
+    "type": "автомобиль"
+  },
+  {
+    "cost": 20,
+    "name": "BMW M5",
+    "type": "автомобиль"
+  },
+  {
+    "cost": 20,
+    "name": "Mazda CX7",
+    "type": "автомобиль"
+  },
+  {
+    "cost": 10,
+    "name": "Ninja ZX-14",
+    "type": "мотоцикл"
+  }
+]

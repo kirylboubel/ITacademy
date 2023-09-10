@@ -1,7 +1,11 @@
 package by.itacademy.transport;
 
+import by.itacademy.annotation.Parametr;
+
 public class Transport {
+    @Parametr(name = "TransportTypeAndCost")
     private final TransportTypeAndCost transportTypeAndCost;
+    @Parametr (name = "transoprtName")
     private final String transoprtName;
 
     public Transport(final TransportTypeAndCost transportTypeAndCost, final String transoprtName) {
