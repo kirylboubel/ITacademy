@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class FileTrasportReaderTest {
+class FileTransportReaderTest {
 
     @Test
     void testRead_happyTest() throws TransportReaderException {
@@ -23,9 +23,9 @@ class FileTrasportReaderTest {
     }
 
     @Test
-    void testRead_impossibleToFindFile() throws TransportReaderException {
-        var fileTrasportReader = new FileTrasportReader("transporter.json");
-        final var exception = assertThrows(TransportReaderException.class, () -> fileTrasportReader.read());
+    void testRead_impossibleToFindFile() {
+        var fileTrasportReader = new FileTrasportReader("test-transporter.json");
+        final var exception = assertThrows(TransportReaderException.class, fileTrasportReader::read);
 
         assertNotNull(exception, "Exception is null");
         assertNotNull(exception.getMessage(), "Resource from file [%s] is null");

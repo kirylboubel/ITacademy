@@ -23,11 +23,13 @@ class JsonDocumentParserTest {
         final List<Transport> transportList = parser.parse(content);
 
         assertNotNull(transportList, "List is null");
-        assertEquals(transportList.get(0).getTransportTypeAndCost(), TransportTypeAndCost.AUTOMOBILE);
+        for (Transport transport : transportList) {
+            assertEquals(transport.getTransportTypeAndCost(), TransportTypeAndCost.AUTOMOBILE);
+        }
     }
 
     @Test
-    void testParse_impossibleToReadContent_happyPath() throws DocumentParserException {
+    void testParse_impossibleToReadContent_happyPath() {
         final String content = "{\n" +
                 "    \"type\": \"automobile\",\n" +
                 "    \"model\": \"Audi Q7\"\n" +

@@ -10,12 +10,12 @@ import java.io.InputStreamReader;
 public class FileTrasportReader implements TransportFileReader {
     private final String fileName;
 
-    public String getFileName() {
-        return fileName;
-    }
-
     public FileTrasportReader(String fileName) {
         this.fileName = fileName;
+    }
+
+    public String getFileName() {
+        return fileName;
     }
 
     @Override
@@ -24,7 +24,6 @@ public class FileTrasportReader implements TransportFileReader {
             final String content = reader.lines()
                     .reduce(String::concat)
                     .orElse(null);
-            System.out.println(content);
 
             return content;
         } catch (final IOException ex) {

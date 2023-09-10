@@ -4,6 +4,11 @@ public class Transport {
     private final TransportTypeAndCost transportTypeAndCost;
     private final String transoprtName;
 
+    public Transport(final TransportTypeAndCost transportTypeAndCost, final String transoprtName) {
+        this.transportTypeAndCost = transportTypeAndCost;
+        this.transoprtName = transoprtName;
+    }
+
     public TransportTypeAndCost getTransportTypeAndCost() {
         return transportTypeAndCost;
     }
@@ -18,11 +23,6 @@ public class Transport {
 
     public String getTransoprtName() {
         return transoprtName;
-    }
-
-    public Transport(final TransportTypeAndCost transportTypeAndCost, final String transoprtName) {
-        this.transportTypeAndCost = transportTypeAndCost;
-        this.transoprtName = transoprtName;
     }
 
     @Override

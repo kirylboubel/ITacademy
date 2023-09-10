@@ -21,46 +21,49 @@ public class JsonFileWriter implements DataWriter {
         this.wrongJsonFileName = new File(wrongJsonFileName);
     }
 
+    public File getRightJsonFileName() {
+        return rightJsonFileName;
+    }
+
+    public File getWrongJsonFileName() {
+        return wrongJsonFileName;
+    }
+
     @Override
-    public void rightWrite(final List<Transport> rightTransportList, Comparator<Transport> comparator) throws DataWriterException {
-        try (final BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(rightJsonFileName, StandardCharsets.UTF_8))) {
-            final List<JSONObject> rightJsonList = new ArrayList<>();
-            final List<Transport> sortedTransportList = rightTransportList.stream()
-                    .sorted(comparator)
-                    .collect(Collectors.toList());
+    public void rightWrite(final List<Transport> rightTransportList, final Comparator<Transport> comparator) throws DataWriterException {
+        final List<Transport> sortedTransportList = rightTransportList.stream()
+                .sorted(comparator)
+                .toList();
 
-            for (final Transport transport : sortedTransportList) {
-                final JSONObject jsonObject = new JSONObject();
-
-                jsonObject.put("type", transport.getTransportType());
-                jsonObject.put("name", transport.getTransoprtName());
-                jsonObject.put("cost", transport.getTransportTax());
-
-                rightJsonList.add(jsonObject);
-            }
-            bufferedWriter.write(rightJsonList.toString());
-        } catch (final IOException e) {
-            final String exception = "Directory not found ";
-            throw new DataWriterException(exception + rightJsonFileName.getAbsolutePath(), e);
-        }
+        write(sortedTransportList, true);
     }
 
     @Override
     public void wrongWrite(final List<Transport> wrongTransportList) throws DataWriterException {
-        try (final BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(wrongJsonFileName, StandardCharsets.UTF_8))) {
-            final List<JSONObject> wrongJsonList = new ArrayList<>();
+        write(wrongTransportList, false);
+    }
 
-            for (final Transport transport : wrongTransportList) {
-                JSONObject jsonObject = new JSONObject();
+    private void write(final List<Transport> transports, final boolean isValid) throws DataWriterException {
+        final File outFile = isValid ? rightJsonFileName : wrongJsonFileName;
+
+        try (final BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(outFile, StandardCharsets.UTF_8))) {
+            final List<JSONObject> jSonList = new ArrayList<>(transports.size());
+
+            for (final Transport transport : transports) {
+                final JSONObject jsonObject = new JSONObject();
                 jsonObject.put("type", transport.getTransportType());
                 jsonObject.put("name", transport.getTransoprtName());
 
-                wrongJsonList.add(jsonObject);
+                if (isValid) {
+                    jsonObject.put("cost", transport.getTransportTax());
+                }
+
+                jSonList.add(jsonObject);
             }
-            bufferedWriter.write(wrongJsonList.toString());
+            bufferedWriter.write(jSonList.toString());
         } catch (final IOException e) {
-            final String exception = "Directory not found ";
-            throw new DataWriterException(exception + wrongJsonFileName.getAbsolutePath(), e);
+            final String exception = "Failed to write file " + outFile.getAbsolutePath();
+            throw new DataWriterException(exception, e);
         }
     }
 }

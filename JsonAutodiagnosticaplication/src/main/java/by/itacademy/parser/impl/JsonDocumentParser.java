@@ -21,7 +21,7 @@ public class JsonDocumentParser implements DocumentParser {
             final JSONArray json = new JSONArray(content);
 
             for (int index = 0; index <= json.length() - 1; index++) {
-                JSONObject typeData = (JSONObject) json.get(index);
+                final JSONObject typeData = (JSONObject) json.get(index);
 
                 final String stringType = typeData.getString("type");
                 final TransportTypeAndCost type = TransportTypeAndCost.valueOf(stringType.toUpperCase());
@@ -30,7 +30,6 @@ public class JsonDocumentParser implements DocumentParser {
                 final Transport transport = new Transport(type, model);
                 transportList.add(transport);
             }
-            System.out.println(transportList.toString());
             return transportList;
         } catch (final JSONException e) {
             throw new DocumentParserException("Failed to parse JSON content", e);
