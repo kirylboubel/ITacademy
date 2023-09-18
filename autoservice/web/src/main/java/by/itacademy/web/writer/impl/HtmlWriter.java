@@ -8,7 +8,7 @@ import java.util.List;
 
 public class HtmlWriter implements Writer {
     @Override
-    public String writeJsonToHtmlTable(List<JSONObject> jsonObjectList, boolean isValid, String tableName) {
+    public String writeJsonToHtmlTable(final List<JSONObject> jsonObjectList, final boolean isValid, final String tableName) {
         final List<String> table = new ArrayList<>();
         table.add("<table border=\"1\"");
         table.add("<caption>" + tableName + "</caption>");
@@ -20,7 +20,7 @@ public class HtmlWriter implements Writer {
             table.add("<th>Price</th>");
         }
 
-        for (JSONObject jsonObject : jsonObjectList) {
+        for (final JSONObject jsonObject : jsonObjectList) {
             table.add("<tr>");
             table.add("<th>" + jsonObject.get("type") + "</th>");
             table.add("<th>" + jsonObject.get("name") + "</th>");
