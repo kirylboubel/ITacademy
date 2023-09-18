@@ -1,6 +1,5 @@
 package by.itacademy.delimiter.impl;
 
-import by.itacademy.annotation.Parametr;
 import by.itacademy.delimiter.Delimiter;
 import by.itacademy.transport.Transport;
 import org.json.JSONObject;
@@ -14,8 +13,7 @@ public class ListDelimiter implements Delimiter {
     private static final Predicate<String> PATTERN_RIGHT_VEHICLE = Pattern.compile("^[a-zA-Z]((\s|-)?[a-zA-Z0-9])*$").asPredicate();
 
     @Override
-    @Parametr(name = "procesed-transport list")
-    public final List<JSONObject> divideListToRightTransportlis(final List<Transport> transportList) {
+    public final List<JSONObject> divideListToRightTransportlist(final List<Transport> transportList) {
         final List<Transport> rightTransportList = transportList.stream()
                 .filter(ListDelimiter::isValid)
                 .toList();
@@ -24,8 +22,7 @@ public class ListDelimiter implements Delimiter {
     }
 
     @Override
-    @Parametr(name = "invalid-transport list")
-    public final List<JSONObject> divideListToWrongTransportlis(final List<Transport> transportList) {
+    public final List<JSONObject> divideListToWrongTransportlist(final List<Transport> transportList) {
         final List<Transport> wrongTransportList = transportList.stream()
                 .filter(transport -> !isValid(transport))
                 .toList();
@@ -34,7 +31,7 @@ public class ListDelimiter implements Delimiter {
     }
 
     private static boolean isValid(final Transport transport) {
-        return PATTERN_RIGHT_VEHICLE.test(transport.getTransoprtName());
+        return PATTERN_RIGHT_VEHICLE.test(transport.getTransportName());
     }
 
     private List<JSONObject> divideList(final List<Transport> transportList, final boolean isValid) {
@@ -43,7 +40,7 @@ public class ListDelimiter implements Delimiter {
         for (final Transport transport : transportList) {
             final JSONObject jsonObject = new JSONObject();
             jsonObject.put("type", transport.getTransportType());
-            jsonObject.put("name", transport.getTransoprtName());
+            jsonObject.put("name", transport.getTransportName());
 
             if (isValid) {
                 jsonObject.put("cost", transport.getTransportTax());
@@ -52,6 +49,5 @@ public class ListDelimiter implements Delimiter {
         }
         return jsonObjectList;
     }
-
 }
 

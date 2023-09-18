@@ -39,7 +39,7 @@ class TransportTest {
         final var transport = new Transport(null, expectedTransportName);
 
         //when
-        final var actualTransportName = transport.getTransoprtName();
+        final var actualTransportName = transport.getTransportName();
 
         //then
         assertEquals(expectedTransportName, actualTransportName);

@@ -19,7 +19,7 @@ public class JsonServletTransportReader implements TransportReader {
     public String read(InputStream inputstream) throws TransportReaderException, IOException {
 
         try {
-            final var  in = getDecodedStream(inputstream);
+            final var in = getDecodedStream(inputstream);
             return READER.read(in);
 
         } catch (final TransportReaderException e) {

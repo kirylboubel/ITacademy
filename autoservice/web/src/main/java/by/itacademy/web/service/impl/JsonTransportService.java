@@ -14,8 +14,6 @@ import org.json.JSONObject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.ArrayList;
 import java.util.List;
 
 public class JsonTransportService implements TransportService {
@@ -30,13 +28,13 @@ public class JsonTransportService implements TransportService {
             final List<Transport> transportList = jsonDocumentParser.parse(transportString);
 
             final ListDelimiter listDelimiter = new ListDelimiter();
-            final List<JSONObject> righTransportList = listDelimiter.divideListToRightTransportlis(transportList);
-            final List<JSONObject> wrongTransoprtList = listDelimiter.divideListToWrongTransportlis(transportList);
+            final List<JSONObject> righTransportList = listDelimiter.divideListToRightTransportlist(transportList);
+            final List<JSONObject> wrongTransoprtList = listDelimiter.divideListToWrongTransportlist(transportList);
 
             final Writer writer = new HtmlWriter();
 
-            response.getWriter().println(writer.writeJsonToHtmlTable(righTransportList, true));
-            response.getWriter().println(writer.writeJsonToHtmlTable(wrongTransoprtList, false));
+            response.getWriter().println(writer.writeJsonToHtmlTable(righTransportList, true, "Processed-transport"));
+            response.getWriter().println(writer.writeJsonToHtmlTable(wrongTransoprtList, false, "Invalid-transport"));
 
 
         } catch (final TransportReaderException e) {

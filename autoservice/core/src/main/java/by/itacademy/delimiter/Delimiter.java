@@ -6,6 +6,7 @@ import org.json.JSONObject;
 import java.util.List;
 
 public interface Delimiter {
-    List<JSONObject> divideListToRightTransportlis(List<Transport> transportList);
-    List<JSONObject> divideListToWrongTransportlis(List<Transport> transportList);
+    List<JSONObject> divideListToRightTransportlist(List<Transport> transportList);
+
+    List<JSONObject> divideListToWrongTransportlist(List<Transport> transportList);
 }

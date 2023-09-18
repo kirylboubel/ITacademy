@@ -5,11 +5,11 @@ import java.util.Objects;
 
 public class Transport {
     private final TransportTypeAndCost transportTypeAndCost;
-    private final String transoprtName;
+    private final String transportName;
 
-    public Transport(final TransportTypeAndCost transportTypeAndCost, final String transoprtName) {
+    public Transport(final TransportTypeAndCost transportTypeAndCost, final String transportName) {
         this.transportTypeAndCost = transportTypeAndCost;
-        this.transoprtName = transoprtName;
+        this.transportName = transportName;
     }
 
     public String getTransportType() {
@@ -20,14 +20,14 @@ public class Transport {
         return transportTypeAndCost.getTaxValue();
     }
 
-    public String getTransoprtName() {
-        return transoprtName;
+    public String getTransportName() {
+        return transportName;
     }
 
     @Override
     public String toString() {
         return "<" + this.transportTypeAndCost.getDescription() + ">|<"
-                + this.transoprtName + ">|<"
+                + this.transportName + ">|<"
                 + this.transportTypeAndCost.getTaxValue() + ">";
     }
 
@@ -40,13 +40,13 @@ public class Transport {
         }
         final Transport transport = (Transport) o;
         return transportTypeAndCost == transport.transportTypeAndCost
-                && Objects.equals(transoprtName, transport.transoprtName);
+                && Objects.equals(transportName, transport.transportName);
     }
 
     @Override
     public int hashCode() {
         int result = transportTypeAndCost != null ? transportTypeAndCost.hashCode() : 0;
-        result = 31 * result + (transoprtName != null ? transoprtName.hashCode() : 0);
+        result = 31 * result + (transportName != null ? transportName.hashCode() : 0);
         return result;
     }
 }
