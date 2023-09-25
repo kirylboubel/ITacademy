@@ -1,29 +1,30 @@
-package by.itacademy.delimiter.impl;
+package by.itacademy.convertor.impl;
 
-import by.itacademy.transport.Transport;
-import by.itacademy.transport.TransportTypeAndCost;
-import org.json.JSONException;
+import by.itacademy.transport.transport.Transport;
+import by.itacademy.transport.transport.TransportTypeAndCost;
 import org.json.JSONObject;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.function.Executable;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
-class ListDelimiterTest {
+class ListConvertorTest {
 
     @Test
-    void testDivideListToRightTransportlist_happyPath() {
+    void testConvertToProcessedJsonTransports_happyPath() {
         //given
         final List<Transport> expectedTransportList = new ArrayList<>();
         expectedTransportList.add(new Transport(TransportTypeAndCost.AUTOMOBILE, "galaxy"));
         expectedTransportList.add(new Transport(TransportTypeAndCost.AUTOMOBILE, "malibu"));
+        Comparator<Transport> comparator = Comparator.comparing(Transport::getTransportName);
 
         //when
-        final ListDelimiter listDelimiter = new ListDelimiter();
-        final List<JSONObject> rightTransportList = listDelimiter.divideListToRightTransportlist(expectedTransportList);
+        final ListConvertor listConvertor = new ListConvertor();
+        final List<JSONObject> rightTransportList = listConvertor.convertToProcessedJsonTransports(expectedTransportList, comparator);
 
         //then
         assertNotNull(rightTransportList, "rightTransportList is null");
@@ -35,14 +36,16 @@ class ListDelimiterTest {
     }
 
     @Test
-    void divideListToWrongTransportlist() {
+    void testConvertToInvalidJsonTransports_happyPath() {
+        //given
         final List<Transport> expectedTransportList = new ArrayList<>();
         expectedTransportList.add(new Transport(TransportTypeAndCost.AUTOMOBILE, "MX-5!"));
         expectedTransportList.add(new Transport(TransportTypeAndCost.AUTOMOBILE, "Land Cruze&"));
+        Comparator<Transport> comparator = Comparator.comparing(Transport::getTransportName);
 
         //when
-        final ListDelimiter listDelimiter = new ListDelimiter();
-        final List<JSONObject> wrongTransportlist = listDelimiter.divideListToWrongTransportlist(expectedTransportList);
+        final ListConvertor listConvertor = new ListConvertor();
+        final List<JSONObject> wrongTransportlist = listConvertor.convertToInvalidJsonTransports(expectedTransportList, comparator);
 
         //then
         assertNotNull(wrongTransportlist, "wrongTransportlist is null");

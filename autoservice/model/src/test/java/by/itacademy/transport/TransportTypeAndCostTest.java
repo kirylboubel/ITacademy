@@ -1,8 +1,8 @@
 package by.itacademy.transport;
 
+import by.itacademy.transport.transport.TransportTypeAndCost;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.stream.Stream;
 

@@ -2,8 +2,8 @@ package by.itacademy.parser.impl;
 
 import by.itacademy.parser.DocumentParser;
 import by.itacademy.parser.DocumentParserException;
-import by.itacademy.transport.Transport;
-import by.itacademy.transport.TransportTypeAndCost;
+import by.itacademy.transport.transport.Transport;
+import by.itacademy.transport.transport.TransportTypeAndCost;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;

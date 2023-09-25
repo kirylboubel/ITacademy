@@ -1,6 +1,6 @@
 package by.itacademy.parser;
 
-import by.itacademy.transport.Transport;
+import by.itacademy.transport.transport.Transport;
 
 import java.util.List;
 

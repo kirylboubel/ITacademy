@@ -3,15 +3,12 @@ package by.itacademy.reader.impl;
 import by.itacademy.reader.TransportReaderException;
 import org.junit.jupiter.api.Test;
 
-import java.io.BufferedInputStream;
 import java.io.ByteArrayInputStream;
-import java.io.IOException;
-import java.io.InputStream;
 
 import static by.itacademy.util.CommonConstants.DEFAULT_CHARSET;
 import static org.junit.jupiter.api.Assertions.*;
 
-class JsonTrasnportReaderTest {
+class jsonTransportReaderTest {
 
     @Test
     void testRead_happyPath() throws TransportReaderException {
@@ -21,7 +18,7 @@ class JsonTrasnportReaderTest {
         final var in = new ByteArrayInputStream(content);
 
         //when
-        final var reader = new JsonTrasnportReader();
+        final var reader = new jsonTransportReader();
         final var transportSting = reader.read(in);
 
         //then

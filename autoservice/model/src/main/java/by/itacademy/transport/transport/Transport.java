@@ -1,10 +1,13 @@
-package by.itacademy.transport;
+package by.itacademy.transport.transport;
 
+
+import by.itacademy.transport.annotation.Parameter;
 
 import java.util.Objects;
 
 public class Transport {
     private final TransportTypeAndCost transportTypeAndCost;
+    @Parameter(pattern = "^[a-zA-Z]((\s|-)?[a-zA-Z0-9])*$")
     private final String transportName;
 
     public Transport(final TransportTypeAndCost transportTypeAndCost, final String transportName) {

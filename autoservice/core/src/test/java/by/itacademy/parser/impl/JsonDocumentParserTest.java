@@ -1,9 +1,8 @@
 package by.itacademy.parser.impl;
 
 import by.itacademy.parser.DocumentParserException;
-import by.itacademy.reader.impl.JsonTrasnportReader;
-import by.itacademy.transport.Transport;
-import by.itacademy.transport.TransportTypeAndCost;
+import by.itacademy.transport.transport.Transport;
+import by.itacademy.transport.transport.TransportTypeAndCost;
 import org.junit.jupiter.api.Test;
 
 import java.util.Collections;

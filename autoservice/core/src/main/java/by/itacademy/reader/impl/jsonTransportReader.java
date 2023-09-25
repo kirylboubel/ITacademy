@@ -7,19 +7,18 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.nio.charset.StandardCharsets;
 
 import static by.itacademy.util.CommonConstants.DEFAULT_CHARSET;
 
-public class JsonTrasnportReader implements TransportReader {
+public class jsonTransportReader implements TransportReader {
 
     @Override
     public String read(final InputStream in) throws TransportReaderException {
-        final String content;
         if (in == null) {
             return "";
         }
         try (final var reader = new BufferedReader(new InputStreamReader(in, DEFAULT_CHARSET))) {
+            final String content;
             content = reader.lines()
                     .reduce(String::concat)
                     .orElse(null);

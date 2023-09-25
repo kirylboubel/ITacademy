@@ -1,5 +1,7 @@
 package by.itacademy.transport;
 
+import by.itacademy.transport.transport.Transport;
+import by.itacademy.transport.transport.TransportTypeAndCost;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;

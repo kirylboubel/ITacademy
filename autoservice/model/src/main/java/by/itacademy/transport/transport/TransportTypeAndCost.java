@@ -1,12 +1,12 @@
-package by.itacademy.transport;
+package by.itacademy.transport.transport;
 
 public enum TransportTypeAndCost {
 
     MOTORBIKE("motorbike", 10),
     AUTOMOBILE("automobile", 20),
     MINIBUS("minibus", 30);
-    private String description;
-    private int taxValue;
+    final private String description;
+    final private int taxValue;
 
     TransportTypeAndCost(final String description, final int taxValue) {
         this.description = description;

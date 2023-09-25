@@ -8,7 +8,6 @@
         <version>1.0-SNAPSHOT</version>
     </parent>
 
-    <groupId>by.itacademy</groupId>
     <artifactId>core</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>jar</packaging>
@@ -19,9 +18,6 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <model.version>1.0-SNAPSHOT</model.version>
     </properties>
-
-
-
 
     <dependencies>
         <dependency>
@@ -58,13 +54,11 @@
     </dependencyManagement>
 
     <build>
-
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
             </plugin>
         </plugins>
-        <finalName>core</finalName>
     </build>
 </project>
