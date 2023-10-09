@@ -1,11 +1,15 @@
-package by.itacademy.client;
+package by.itacademy.dao.model.client;
 
-public class Client {
+import by.itacademy.dao.model.BaseModel;
+
+public class Client extends BaseModel {
     private final String firstName;
 
     private final String lastName;
 
-    public Client(String firstName, String lastName) {
+
+    public Client(final Integer id, final String firstName, final String lastName) {
+        super(id);
         this.firstName = firstName;
         this.lastName = lastName;
     }
