@@ -1,6 +1,6 @@
-package by.itacademy.dao.model.client;
+package by.itacademy.dao.mapper.model.client;
 
-import by.itacademy.dao.model.BaseModel;
+import by.itacademy.dao.mapper.model.BaseModel;
 
 public class Client extends BaseModel {
     private final String firstName;
@@ -20,5 +20,10 @@ public class Client extends BaseModel {
 
     public String getLastName() {
         return lastName;
+    }
+
+    @Override
+    public String toString() {
+        return "Client id = " + getId() + " first name = " + firstName + " last name = " + lastName;
     }
 }

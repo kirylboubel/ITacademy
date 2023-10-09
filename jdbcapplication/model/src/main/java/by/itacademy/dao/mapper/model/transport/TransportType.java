@@ -1,7 +1,7 @@
-package by.itacademy.dao.model.transport;
+package by.itacademy.dao.mapper.model.transport;
 
-import by.itacademy.dao.model.IdField;
-import by.itacademy.dao.model.NameField;
+import by.itacademy.dao.mapper.model.IdField;
+import by.itacademy.dao.mapper.model.NameField;
 
 public enum TransportType implements IdField, NameField {
     MOTORBIKE(1, "motorbike"),
@@ -15,6 +15,15 @@ public enum TransportType implements IdField, NameField {
         this.name = name;
     }
 
+    public TransportType getEnumByIndex(Integer index) {
+        for (TransportType t : TransportType.values()) {
+            if (t.getId() == index) {
+                return t;
+            }
+        }
+        return null;
+    }
+
     @Override
     public Integer getId() {
         return id;
@@ -23,5 +32,10 @@ public enum TransportType implements IdField, NameField {
     @Override
     public String getName() {
         return name;
+    }
+
+    @Override
+    public String toString() {
+        return "Transport type id = " + getId() + " Transport name = " + getName();
     }
 }

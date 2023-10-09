@@ -1,7 +1,7 @@
-package by.itacademy.dao.model.modelType;
+package by.itacademy.dao.mapper.model.modelType;
 
-import by.itacademy.dao.model.BaseModel;
-import by.itacademy.dao.model.NameField;
+import by.itacademy.dao.mapper.model.BaseModel;
+import by.itacademy.dao.mapper.model.NameField;
 
 public class ModelType extends BaseModel implements NameField {
     private final String transportModel;
@@ -14,5 +14,10 @@ public class ModelType extends BaseModel implements NameField {
     @Override
     public String getName() {
         return transportModel;
+    }
+
+    @Override
+    public String toString() {
+        return "Model Type id = " + getId() + " transport model = " + transportModel;
     }
 }

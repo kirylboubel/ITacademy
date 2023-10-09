@@ -1,8 +1,8 @@
-package by.itacademy.dao.datasource.impl;
+package by.itacademy.dao.datasource.factory.impl;
 
-import by.itacademy.dao.datasource.DataSourcePropertiesFactory;
-import by.itacademy.dao.datasource.DataSourcePropertiesFactoryException;
-import by.itacademy.dao.datasource.JdbcDataSourceProperties;
+import by.itacademy.dao.datasource.impl.JdbcDataSourceProperties;
+import by.itacademy.dao.datasource.factory.DataSourcePropertiesFactory;
+import by.itacademy.dao.datasource.factory.DataSourcePropertiesFactoryException;
 
 import java.io.IOException;
 import java.io.InputStream;

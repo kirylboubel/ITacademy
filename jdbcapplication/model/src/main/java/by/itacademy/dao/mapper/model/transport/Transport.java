@@ -1,8 +1,8 @@
-package by.itacademy.dao.model.transport;
+package by.itacademy.dao.mapper.model.transport;
 
-import by.itacademy.dao.model.BaseModel;
-import by.itacademy.dao.model.client.Client;
-import by.itacademy.dao.model.modelType.ModelType;
+import by.itacademy.dao.mapper.model.BaseModel;
+import by.itacademy.dao.mapper.model.client.Client;
+import by.itacademy.dao.mapper.model.modelType.ModelType;
 
 public class Transport extends BaseModel {
     private final TransportType transportType;
@@ -16,11 +16,23 @@ public class Transport extends BaseModel {
         this.client = client;
     }
 
+    public TransportType getTransportType() {
+        return transportType;
+    }
+
+    public ModelType getModelType() {
+        return modelType;
+    }
+
+    public Client getClient() {
+        return client;
+    }
+
     @Override
     public String toString() {
-        return "| Transport name = " + modelType.getName() + " | "
-                + "| Transport type = " + transportType.toString() + " | "
-                + "| Client first name = " + client.getFirstName() + " | "
-                + "| Client last name = " + client.getLastName() + " | ";
+        return "| Id = " + getId() + " | "
+                + "| Transport Type Id = " + transportType.getId() + " | "
+                + "| Model type Id  = " + modelType.getId()
+                + "| Client Id  = " + client.getId();
     }
 }
