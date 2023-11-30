@@ -10,11 +10,11 @@ import java.util.List;
 public class Schedule extends BaseEntity {
     @Column(name = "start_date", nullable = false)
     private OffsetDateTime startDate;
-    @Column(name = "endDate", nullable = false)
+    @Column(name = "end_date", nullable = false)
     public OffsetDateTime endDate;
-    @ManyToMany(mappedBy = "schedules")
-    private List<Lesson> lessons;
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+
+
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(
             name = "school_id",
             referencedColumnName = "id",
@@ -22,21 +22,42 @@ public class Schedule extends BaseEntity {
             foreignKey = @ForeignKey(name = "fk__schedule__school__id")
     )
     private School school;
-    @ManyToMany(mappedBy = "schedules")
-    private List<Group> groups;
-    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JoinTable(
-            name = "schedule_group_room",
-            joinColumns = @JoinColumn(
-                    name = "group_room_id",
-                    referencedColumnName = "id",
-                    foreignKey = @ForeignKey(name = "fk__schedule_group_room__group_room__id")
-            ),
-            inverseJoinColumns = @JoinColumn(
-                    name = "schedule_id",
-                    referencedColumnName = "id",
-                    foreignKey = @ForeignKey(name = "fk__schedule_group_room__schedule__id")
-            )
-    )
-    private List<GroupRoom> groupRooms;
+
+    @OneToMany(mappedBy = "schedule")
+    private List<Lesson> lessons;
+
+    public Schedule() {
+    }
+
+    public OffsetDateTime getStartDate() {
+        return startDate;
+    }
+
+    public void setStartDate(final OffsetDateTime startDate) {
+        this.startDate = startDate;
+    }
+
+    public OffsetDateTime getEndDate() {
+        return endDate;
+    }
+
+    public void setEndDate(final OffsetDateTime endDate) {
+        this.endDate = endDate;
+    }
+
+    public School getSchool() {
+        return school;
+    }
+
+    public void setSchool(final School school) {
+        this.school = school;
+    }
+
+    public List<Lesson> getLessons() {
+        return lessons;
+    }
+
+    public void setLessons(final List<Lesson> lessons) {
+        this.lessons = lessons;
+    }
 }

@@ -1,14 +1,25 @@
 package by.itacademy;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Entity;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.Table;
 
 import java.util.List;
 
 @Entity
 @Table(name = "parent")
-public class Parent extends BasePersonEntity{
-    @OneToMany(mappedBy = "parent")
-    private List <Student> students;
+public class Parent extends BasePersonEntity {
     @ManyToMany(mappedBy = "parents")
-    private List<Group> groups;
+    private List<Student> students;
+
+    public Parent() {
+    }
+
+    public List<Student> getStudents() {
+        return students;
+    }
+
+    public void setStudents(final List<Student> students) {
+        this.students = students;
+    }
 }

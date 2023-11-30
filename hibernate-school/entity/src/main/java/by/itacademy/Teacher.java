@@ -1,6 +1,9 @@
 package by.itacademy;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Entity;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
 
 import java.util.List;
 
@@ -8,34 +11,60 @@ import java.util.List;
 @Table(name = "teacher")
 public class Teacher extends BasePersonEntity {
     @ManyToMany(mappedBy = "teachers")
-    private List<Subject> subjects;
-    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinTable(
-            name = "teacher_assessment",
-            joinColumns = @JoinColumn(
-                    name = "assessment_id",
-                    referencedColumnName = "id",
-                    foreignKey = @ForeignKey(name = "fk__teacher_assessment__assessment__id")
-            ),
-            inverseJoinColumns = @JoinColumn(
-                    name = "teacher_id",
-                    referencedColumnName = "id",
-                    foreignKey = @ForeignKey(name = "fk__teacher_assessment__teacher__id")
-            )
-    )
-    private List<Assessment> assessments;
-    @ManyToMany(mappedBy = "teachers")
-    private List<Lesson> lessons;
-    @ManyToMany(mappedBy = "teachers")
-    private List<Group> groups;
-    @ManyToMany(mappedBy = "teachers")
     private List<School> schools;
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JoinColumn(
-            name = "group_room_id",
-            referencedColumnName = "id",
-            nullable = false,
-            foreignKey = @ForeignKey(name = "fk__teacher__group_room__id")
-    )
-    private GroupRoom groupRoom;
+
+    @OneToMany(mappedBy = "groupOwner")
+    private List<StudentGroup> studentGroups;
+
+    @OneToMany(mappedBy = "teacher")
+    private List<StudentGroupSubjectLink> studentGroupSubjectLinks;
+
+    @OneToMany(mappedBy = "roomOwner")
+    private List<GroupRoom> groupRooms;
+
+    @OneToMany(mappedBy = "teacher")
+    private List<Lesson> lessons;
+
+    public Teacher() {
+    }
+
+    public List<School> getSchools() {
+        return schools;
+    }
+
+    public void setSchools(final List<School> schools) {
+        this.schools = schools;
+    }
+
+    public List<StudentGroup> getStudentGroups() {
+        return studentGroups;
+    }
+
+    public void setStudentGroups(final List<StudentGroup> studentGroups) {
+        this.studentGroups = studentGroups;
+    }
+
+    public List<StudentGroupSubjectLink> getStudentGroupSubjectLinks() {
+        return studentGroupSubjectLinks;
+    }
+
+    public void setStudentGroupSubjectLinks(final List<StudentGroupSubjectLink> studentGroupSubjectLinks) {
+        this.studentGroupSubjectLinks = studentGroupSubjectLinks;
+    }
+
+    public List<GroupRoom> getGroupRooms() {
+        return groupRooms;
+    }
+
+    public void setGroupRooms(final List<GroupRoom> groupRooms) {
+        this.groupRooms = groupRooms;
+    }
+
+    public List<Lesson> getLessons() {
+        return lessons;
+    }
+
+    public void setLessons(final List<Lesson> lessons) {
+        this.lessons = lessons;
+    }
 }

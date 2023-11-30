@@ -9,11 +9,14 @@ public class BaseEntity {
     @Column(name = "id")
     private Integer id;
 
+    public BaseEntity() {
+    }
+
     public Integer getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(final Integer id) {
         this.id = id;
     }
 }

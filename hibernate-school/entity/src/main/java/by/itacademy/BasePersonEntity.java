@@ -9,11 +9,14 @@ public class BasePersonEntity extends BaseEntity {
     @Column(name = "last_name", nullable = false, length = 30)
     private String lastName;
 
+    public BasePersonEntity() {
+    }
+
     public String getFirstName() {
         return firstName;
     }
 
-    public void setFirstName(String firstName) {
+    public void setFirstName(final String firstName) {
         this.firstName = firstName;
     }
 
@@ -21,7 +24,7 @@ public class BasePersonEntity extends BaseEntity {
         return lastName;
     }
 
-    public void setLastName(String lastName) {
+    public void setLastName(final String lastName) {
         this.lastName = lastName;
     }
 }

@@ -2,8 +2,6 @@ package by.itacademy;
 
 import jakarta.persistence.*;
 
-import java.util.List;
-
 @Entity
 @Table(name = "assessment")
 public class Assessment {
@@ -11,26 +9,59 @@ public class Assessment {
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(name = "value", length = 2)
-    private Integer value;
+    @Column(name = "assessment")
+    private Integer assessment;
+
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(
             name = "lesson_id",
             referencedColumnName = "id",
+            nullable = false,
             foreignKey = @ForeignKey(name = "fk__assessment__lesson__id")
     )
     private Lesson lesson;
+
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(
             name = "student_id",
             referencedColumnName = "id",
+            nullable = false,
             foreignKey = @ForeignKey(name = "fk__assessment__student__id")
     )
     private Student student;
-    @ManyToMany(mappedBy = "assessments")
-    private List<Group> groups;
-    @ManyToMany(mappedBy = "assessments")
-    private List<Subject> subjects;
-    @ManyToMany(mappedBy = "assessments")
-    private List<Teacher> teachers;
+
+    public Assessment() {
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Integer getAssessment() {
+        return assessment;
+    }
+
+    public void setAssessment(final Integer assessment) {
+        this.assessment = assessment;
+    }
+
+    public Lesson getLesson() {
+        return lesson;
+    }
+
+    public void setLesson(final Lesson lesson) {
+        this.lesson = lesson;
+    }
+
+    public Student getStudent() {
+        return student;
+    }
+
+    public void setStudent(final Student student) {
+        this.student = student;
+    }
 }
