@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="afb34317-f9e3-471f-9bae-d7a8838296d2" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../jdbc-dao-application/dao/src/integration-test/java/by/itacademy/dao/jdbc/impl/TransportJdbcDaoIntegrationTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/../jdbc-dao-application/dao/src/integration-test/java/by/itacademy/dao/jdbc/impl/TransportJdbcDaoIntegrationTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../jdbc-dao-application/dao/src/main/java/by/itacademy/jdbc/mapper/impl/ClientResultSetMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/../jdbc-dao-application/dao/src/main/java/by/itacademy/jdbc/mapper/impl/ClientResultSetMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lesson-01-11-23/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../lesson-01-11-23/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lesson-01-11-23/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../lesson-01-11-23/.idea/encodings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lesson-01-11-23/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../lesson-01-11-23/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lesson-24-11-23/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../lesson-24-11-23/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lesson-24-11-23/src/main/java/by/itacademy/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/../lesson-24-11-23/src/main/java/by/itacademy/App.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="importingSettings">
+      <MavenImportingSettings>
+        <option name="workspaceImportEnabled" value="true" />
+      </MavenImportingSettings>
+    </option>
+  </component>
+  <component name="ProjectId" id="2Ywwa8artLm9OMHBL80LTo6cnS8" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "settings.editor.selected.configurable": "com.poratu.idea.plugins.tomcat.setting.TomcatServersConfigurable"
+  }
+}]]></component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="afb34317-f9e3-471f-9bae-d7a8838296d2" name="Changes" comment="" />
+      <created>1701450018970</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1701450018970</updated>
+    </task>
+    <servers />
+  </component>
+</project>

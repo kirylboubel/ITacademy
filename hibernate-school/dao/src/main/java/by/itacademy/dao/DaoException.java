@@ -76,4 +76,10 @@ public class DaoException extends Exception {
             super(message, cause);
         }
     }
+
+    public static class StudentGroupSubjectLinkException extends DaoException{
+        public StudentGroupSubjectLinkException(String message, Throwable cause) {
+            super(message, cause);
+        }
+    }
 }

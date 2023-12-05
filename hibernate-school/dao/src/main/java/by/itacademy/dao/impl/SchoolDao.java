@@ -9,24 +9,4 @@ public class SchoolDao extends GenericDao<School> {
     public SchoolDao(final SessionFactory sessionFactory) {
         super(School.class, DaoException.ScheduleDaoException::new, sessionFactory);
     }
-
-    @Override
-    public void create(School entity) throws DaoException {
-        super.create(entity);
-    }
-
-    @Override
-    public School read(Integer id) throws DaoException {
-        return super.read(id);
-    }
-
-    @Override
-    public void update(School entity) throws DaoException {
-        super.update(entity);
-    }
-
-    @Override
-    public void delete(Integer id) throws DaoException {
-        super.delete(id);
-    }
 }

@@ -24,6 +24,7 @@ public class DaoProviderImpl implements DaoProvider {
         daoMap.put(School.class, new SchoolDao(sessionFactory));
         daoMap.put(Student.class, new StudentDao(sessionFactory));
         daoMap.put(StudentGroup.class, new StudentDao(sessionFactory));
+        daoMap.put(StudentGroupSubjectLink.class, new StudentGroupSubjectLinkDao(sessionFactory));
         daoMap.put(Subject.class, new SubjectDao(sessionFactory));
         daoMap.put(Teacher.class, new TeacherDao(sessionFactory));
     }

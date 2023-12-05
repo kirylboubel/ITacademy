@@ -7,7 +7,7 @@ import java.util.List;
 @Entity
 @Table(name = "group_room")
 public class GroupRoom extends BaseEntity {
-    @Column(name = "name", nullable = false, length = 10)
+    @Column(name = "name", nullable = false, length = 30)
     private String name;
 
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)

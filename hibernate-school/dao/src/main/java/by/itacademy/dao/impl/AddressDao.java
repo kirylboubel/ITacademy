@@ -12,23 +12,4 @@ public class AddressDao extends GenericDao<Address> {
         super(Address.class, DaoException.AddressDaoException::new ,sessionFactory);
     }
 
-    @Override
-    public void create(Address entity) throws DaoException {
-        super.create(entity);
-    }
-
-    @Override
-    public Address read(Integer id) throws DaoException {
-        return super.read(id);
-    }
-
-    @Override
-    public void update(Address entity) throws DaoException {
-        super.update(entity);
-    }
-
-    @Override
-    public void delete(Integer id) throws DaoException {
-        super.delete(id);
-    }
 }

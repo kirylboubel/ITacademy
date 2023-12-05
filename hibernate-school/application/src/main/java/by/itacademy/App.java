@@ -1,12 +1,16 @@
 package by.itacademy;
 
 
+import by.itacademy.dao.Dao;
 import by.itacademy.dao.GenericDao;
+import by.itacademy.dao.impl.StudentGroupDao;
 import by.itacademy.dao.provider.DaoProvider;
 import by.itacademy.dao.provider.impl.DaoProviderImpl;
 import by.itacademy.sessionfactory.SessionFactoryUtil;
 import org.hibernate.SessionFactory;
 
+import java.time.OffsetDateTime;
+import java.time.ZoneOffset;
 import java.util.List;
 
 public class App {
@@ -15,7 +19,7 @@ public class App {
             final DaoProvider daoProvider = new DaoProviderImpl(sessionFactory);
 
             //создание адреса
-            final GenericDao<Address> addressDao = daoProvider.provide(Address.class);
+            final Dao<Address> addressDao = daoProvider.provide(Address.class);
             final Address address = new Address();
             address.setBuildingNumber("50");
             address.setStreet("Naganova");
@@ -25,7 +29,7 @@ public class App {
             System.out.println(addressDao.read(address.getId()));
 
             //создание школы
-            final GenericDao<School> schoolDao = daoProvider.provide(School.class);
+            final Dao<School> schoolDao = daoProvider.provide(School.class);
             final School school = new School();
             school.setName("Middle school #9");
             school.setAddress(addressDao.read(address.getId()));
@@ -34,7 +38,7 @@ public class App {
             System.out.println(schoolDao.read(school.getId()).toString());
 
             //создание предмета
-            final GenericDao<Subject> subjectDao = daoProvider.provide(Subject.class);
+            final Dao<Subject> subjectDao = daoProvider.provide(Subject.class);
             final Subject subject = new Subject();
             subject.setName("Math");
 
@@ -50,7 +54,7 @@ public class App {
             subjectDao.update(subjectSchool);
 
             //создание родителей
-            final GenericDao<Parent> parentDao = daoProvider.provide(Parent.class);
+            final Dao<Parent> parentDao = daoProvider.provide(Parent.class);
             final Parent parent1 = new Parent();
             parent1.setFirstName("Kiryl");
             parent1.setLastName("Boubel");
@@ -62,7 +66,7 @@ public class App {
             parentDao.create(parent2);
 
             //создание студента
-            final GenericDao<Student> studentDao = daoProvider.provide(Student.class);
+            final Dao<Student> studentDao = daoProvider.provide(Student.class);
             final Student student = new Student();
             student.setFirstName("Yuri");
             student.setLastName("Boubel");
@@ -89,6 +93,59 @@ public class App {
             final School schoolStudent = schoolDao.read(school.getId());
             schoolStudent.setStudents(List.of(studentDao.read(student.getId())));
             schoolDao.update(schoolStudent);
+
+            //создание учителя
+            final Dao<Teacher> teacherDao = daoProvider.provide(Teacher.class);
+            final Teacher teacher = new Teacher();
+            teacher.setFirstName("Anatoli");
+            teacher.setLastName("Karpovich");
+            teacherDao.create(teacher);
+
+            //связывание учителя и школы
+            final Teacher teacherSchool = teacherDao.read(teacher.getId());
+            teacherSchool.setSchools(List.of(schoolDao.read(school.getId())));
+            teacherDao.update(teacherSchool);
+
+            final School schoolTeacher = schoolDao.read(school.getId());
+            schoolTeacher.setTeachers(List.of(teacherDao.read(teacher.getId())));
+            schoolDao.update(schoolTeacher);
+
+            //создание класса
+            final Dao<StudentGroup> studentGroupDao = daoProvider.provide(StudentGroup.class);
+            final StudentGroup studentGroup = new StudentGroup();
+            studentGroup.setName("JCB-2023");
+            studentGroup.setSchool(schoolDao.read(school.getId()));
+            studentGroup.setGroupOwner(teacherDao.read(teacher.getId()));
+            studentGroupDao.create(studentGroup);
+
+            //связывание студента и группы
+            final StudentGroup studentGroupStudent = studentGroupDao.read(studentGroup.getId());
+            studentGroupStudent.setStudents(List.of(studentDao.read(student.getId())));
+            studentGroupDao.update(studentGroupStudent);
+
+            final Student studentStudentGroup = studentDao.read(student.getId());
+            studentStudentGroup.setStudentGroups(List.of(studentGroupDao.read(studentGroup.getId())));
+            studentDao.update(studentStudentGroup);
+
+            //создание student_group_subject_link
+            final Dao<StudentGroupSubjectLink> studentGroupSubjectLinkDao = daoProvider.provide(StudentGroupSubjectLink.class);
+            final StudentGroupSubjectLink studentGroupSubjectLink = new StudentGroupSubjectLink();
+            studentGroupSubjectLink.setStudentGroup(studentGroupDao.read(studentGroup.getId()));
+            studentGroupSubjectLink.setTeacher(teacherDao.read(teacher.getId()));
+            studentGroupSubjectLink.setSubject(subjectDao.read(subject.getId()));
+            studentGroupSubjectLinkDao.create(studentGroupSubjectLink);
+
+            final StudentGroup studentGroupWithLink = studentGroupDao.read(studentGroup.getId());
+            studentGroupWithLink.setStudentGroupSubjectLinks(List.of(studentGroupSubjectLinkDao.read(studentGroupSubjectLink.getId())));
+            studentGroupDao.update(studentGroupWithLink);
+
+//            //создание расписания
+//            final Dao<Schedule> scheduleDao = daoProvider.provide(Schedule.class);
+//            final Schedule schedule = new Schedule();
+//            schedule.setStartDate(OffsetDateTime.of(2023, 9, 1, 8, 0, 0, 0, ZoneOffset.ofHours(3)));
+//            schedule.setEndDate(OffsetDateTime.of(2024, 5, 25, 19, 0, 0, 0, ZoneOffset.ofHours(3)));
+//            schedule.setSchool(schoolDao.read(school.getId()));
+//            scheduleDao.create(schedule);
 
 
         } catch (Exception e){

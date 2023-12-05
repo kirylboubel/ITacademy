@@ -5,9 +5,9 @@ import jakarta.persistence.*;
 import java.util.List;
 
 @Entity
-@Table(name = "group")
+@Table(name = "student_group")
 public class StudentGroup extends BaseEntity {
-    @Column(name = "name", nullable = false, length = 10)
+    @Column(name = "name", nullable = false, length = 30)
     private String name;
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(
@@ -51,9 +51,6 @@ public class StudentGroup extends BaseEntity {
 
     @OneToMany(mappedBy = "studentGroup")
     private List<Lesson> lessons;
-
-    public StudentGroup() {
-    }
 
     public String getName() {
         return name;
