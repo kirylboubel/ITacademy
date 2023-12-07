@@ -12,9 +12,6 @@ public class Parent extends BasePersonEntity {
     @ManyToMany(mappedBy = "parents")
     private List<Student> students;
 
-    public Parent() {
-    }
-
     public List<Student> getStudents() {
         return students;
     }

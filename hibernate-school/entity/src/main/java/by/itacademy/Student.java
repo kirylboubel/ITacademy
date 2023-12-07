@@ -52,9 +52,6 @@ public class Student extends BasePersonEntity {
     @OneToMany(mappedBy = "student")
     private List<Attend> attends;
 
-    public Student() {
-    }
-
     public List<Parent> getParents() {
         return parents;
     }

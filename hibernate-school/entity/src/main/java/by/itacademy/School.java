@@ -50,9 +50,6 @@ public class School extends BaseEntity {
     @ManyToMany(mappedBy = "schools")
     private List<Subject> subjects;
 
-    public School() {
-    }
-
     public String getName() {
         return name;
     }

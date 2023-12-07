@@ -26,9 +26,6 @@ public class Schedule extends BaseEntity {
     @OneToMany(mappedBy = "schedule")
     private List<Lesson> lessons;
 
-    public Schedule() {
-    }
-
     public OffsetDateTime getStartDate() {
         return startDate;
     }

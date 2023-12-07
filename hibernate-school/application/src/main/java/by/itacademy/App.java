@@ -102,20 +102,23 @@ public class App {
             teacherDao.create(teacher);
 
             //связывание учителя и школы
+            final School schoolTeacher = schoolDao.read(school.getId());
+            schoolTeacher.setTeachers(List.of(teacherDao.read(teacher.getId())));
+            schoolDao.update(schoolTeacher);
+
             final Teacher teacherSchool = teacherDao.read(teacher.getId());
             teacherSchool.setSchools(List.of(schoolDao.read(school.getId())));
             teacherDao.update(teacherSchool);
 
-            final School schoolTeacher = schoolDao.read(school.getId());
-            schoolTeacher.setTeachers(List.of(teacherDao.read(teacher.getId())));
-            schoolDao.update(schoolTeacher);
 
             //создание класса
             final Dao<StudentGroup> studentGroupDao = daoProvider.provide(StudentGroup.class);
             final StudentGroup studentGroup = new StudentGroup();
             studentGroup.setName("JCB-2023");
-            studentGroup.setSchool(schoolDao.read(school.getId()));
-            studentGroup.setGroupOwner(teacherDao.read(teacher.getId()));
+            final School schoolStudentGroup = schoolDao.read(school.getId());
+            studentGroup.setSchool(schoolStudentGroup);
+            final Teacher teacherStudentGroup = teacherDao.read(teacher.getId());
+            studentGroup.setGroupOwner(teacherStudentGroup);
             studentGroupDao.create(studentGroup);
 
             //связывание студента и группы
@@ -139,13 +142,52 @@ public class App {
             studentGroupWithLink.setStudentGroupSubjectLinks(List.of(studentGroupSubjectLinkDao.read(studentGroupSubjectLink.getId())));
             studentGroupDao.update(studentGroupWithLink);
 
-//            //создание расписания
-//            final Dao<Schedule> scheduleDao = daoProvider.provide(Schedule.class);
-//            final Schedule schedule = new Schedule();
-//            schedule.setStartDate(OffsetDateTime.of(2023, 9, 1, 8, 0, 0, 0, ZoneOffset.ofHours(3)));
-//            schedule.setEndDate(OffsetDateTime.of(2024, 5, 25, 19, 0, 0, 0, ZoneOffset.ofHours(3)));
-//            schedule.setSchool(schoolDao.read(school.getId()));
-//            scheduleDao.create(schedule);
+            final Subject subjectWithLink = subjectDao.read(subject.getId());
+            subjectWithLink.setStudentGroupSubjectLinks(List.of(studentGroupSubjectLinkDao.read(studentGroupSubjectLink.getId())));
+            subjectDao.update(subjectWithLink);
+
+            //создание расписания
+            final Dao<Schedule> scheduleDao = daoProvider.provide(Schedule.class);
+            final Schedule schedule = new Schedule();
+            schedule.setStartDate(OffsetDateTime.of(2023, 9, 1, 8, 0, 0, 0, ZoneOffset.ofHours(3)));
+            schedule.setEndDate(OffsetDateTime.of(2024, 5, 25, 19, 0, 0, 0, ZoneOffset.ofHours(3)));
+            schedule.setSchool(schoolDao.read(school.getId()));
+            scheduleDao.create(schedule);
+
+            //создание кабинета
+            final Dao<GroupRoom> groupRoomDao = daoProvider.provide(GroupRoom.class);
+            final GroupRoom groupRoom = new GroupRoom();
+            groupRoom.setName("405");
+            groupRoom.setRoomOwner(teacherDao.read(teacher.getId()));
+            groupRoom.setSchool(schoolDao.read(school.getId()));
+            groupRoom.setStudentGroup(studentGroupDao.read(studentGroup.getId()));
+            groupRoomDao.create(groupRoom);
+
+            //создание урока
+            final Dao<Lesson> lessonDao = daoProvider.provide(Lesson.class);
+            final Lesson lesson = new Lesson();
+            lesson.setTeacher(teacherDao.read(teacher.getId()));
+            lesson.setStudentGroup(studentGroupDao.read(studentGroup.getId()));
+            lesson.setSubject(subjectDao.read(subject.getId()));
+            lesson.setGroupRoom(groupRoomDao.read(groupRoom.getId()));
+            lesson.setSchedule(scheduleDao.read(schedule.getId()));
+            lessonDao.create(lesson);
+
+            //создание оценки
+            final Dao<Assessment> assessmentDao = daoProvider.provide(Assessment.class);
+            final Assessment assessment = new Assessment();
+            assessment.setAssessment(7);
+            assessment.setLesson(lessonDao.read(lesson.getId()));
+            assessment.setStudent(studentDao.read(student.getId()));
+            assessmentDao.create(assessment);
+
+            //создания отметки о посещении
+            final Dao<Attend> attendDao = daoProvider.provide(Attend.class);
+            final Attend attend = new Attend();
+            attend.setVisited(true);
+            attend.setLesson(lessonDao.read(lesson.getId()));
+            attend.setStudent(studentDao.read(student.getId()));
+            attendDao.create(attend);
 
 
         } catch (Exception e){

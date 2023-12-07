@@ -8,9 +8,6 @@ import java.util.List;
 @Table(name = "lesson")
 public class Lesson extends BaseEntity {
 
-    @Column(name = "name", nullable = false, length = 20)
-    private String name;
-
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(
             name = "teacher_id",
@@ -61,17 +58,6 @@ public class Lesson extends BaseEntity {
 
     @OneToMany(mappedBy = "lesson")
     private List<Attend> attends;
-
-    public Lesson() {
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(final String name) {
-        this.name = name;
-    }
 
     public Teacher getTeacher() {
         return teacher;

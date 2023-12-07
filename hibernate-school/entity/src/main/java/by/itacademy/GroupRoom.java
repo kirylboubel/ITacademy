@@ -40,9 +40,6 @@ public class GroupRoom extends BaseEntity {
     @OneToMany(mappedBy = "groupRoom")
     private List<Lesson> lessons;
 
-    public GroupRoom() {
-    }
-
     public String getName() {
         return name;
     }

@@ -9,9 +9,6 @@ public class BasePersonEntity extends BaseEntity {
     @Column(name = "last_name", nullable = false, length = 30)
     private String lastName;
 
-    public BasePersonEntity() {
-    }
-
     public String getFirstName() {
         return firstName;
     }

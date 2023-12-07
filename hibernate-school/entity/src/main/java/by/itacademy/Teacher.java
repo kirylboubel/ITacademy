@@ -25,8 +25,6 @@ public class Teacher extends BasePersonEntity {
     @OneToMany(mappedBy = "teacher")
     private List<Lesson> lessons;
 
-    public Teacher() {
-    }
 
     public List<School> getSchools() {
         return schools;

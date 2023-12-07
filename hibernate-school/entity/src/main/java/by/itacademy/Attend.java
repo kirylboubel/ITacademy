@@ -29,9 +29,6 @@ public class Attend extends BaseEntity{
     )
     private Student student;
 
-    public Attend() {
-    }
-
     public boolean isVisited() {
         return visited;
     }

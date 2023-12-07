@@ -33,10 +33,6 @@ public class StudentGroupSubjectLink extends BaseEntity {
     public StudentGroupSubjectLink() {
     }
 
-    public StudentGroup getStudentGroup() {
-        return studentGroup;
-    }
-
     public void setStudentGroup(final StudentGroup studentGroup) {
         this.studentGroup = studentGroup;
     }

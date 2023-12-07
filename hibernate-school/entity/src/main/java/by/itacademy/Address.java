@@ -19,9 +19,6 @@ public class Address extends BaseEntity {
     @OneToMany(mappedBy = "address")
     private List<School> schools;
 
-    public Address() {
-    }
-
     public String getCity() {
         return city;
     }

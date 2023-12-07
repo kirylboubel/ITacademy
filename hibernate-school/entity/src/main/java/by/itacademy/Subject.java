@@ -33,9 +33,6 @@ public class Subject extends BaseEntity {
     @OneToMany(mappedBy = "subject")
     private List<Lesson> lessons;
 
-    public Subject() {
-    }
-
     public String getName() {
         return name;
     }
