@@ -133,6 +133,7 @@ create table schedule
 create table group_room
 (
     id                   int4 generated always as identity primary key,
+    name				 varchar(30) not null,
     student_group_id     int4 not null,
     room_owner_id        int4 not null,
     school_id            int4 not null,

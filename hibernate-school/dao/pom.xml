@@ -16,7 +16,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
         <entity.version>1.0-SNAPSHOT</entity.version>
-        <postges-driver.version>42.6.0</postges-driver.version>
+        <postgres.version>42.6.0</postgres.version>
         <h2database.version>2.2.224</h2database.version>
         <mockito.version>5.5.0</mockito.version>
     </properties>
@@ -33,6 +33,14 @@
         <dependency>
             <groupId>com.h2database</groupId>
             <artifactId>h2</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-engine</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-params</artifactId>
         </dependency>
         <dependency>
             <groupId>org.mockito</groupId>
@@ -54,7 +62,7 @@
             <dependency>
                 <groupId>org.postgresql</groupId>
                 <artifactId>postgresql</artifactId>
-                <version>${postges-driver.version}</version>
+                <version>${postgres.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.h2database</groupId>

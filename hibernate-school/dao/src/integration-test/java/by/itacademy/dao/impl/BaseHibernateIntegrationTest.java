@@ -1,37 +1,61 @@
 package by.itacademy.dao.impl;
 
-import by.itacademy.*;
-import by.itacademy.sessionfactory.SessionFactoryUtilException;
-import org.hibernate.HibernateException;
-import org.hibernate.SessionFactory;
-import org.hibernate.cfg.Configuration;
+import by.itacademy.dao.DaoException;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 
+import java.sql.*;
+
 public class BaseHibernateIntegrationTest {
-    protected static final SessionFactory SESSION_FACTORY = getSessionFactory();
+    protected interface ResultSetVerifier {
+        void verify(ResultSet resultSet) throws SQLException;
+    }
 
-    private static SessionFactory getSessionFactory() {
-            try {
-                Configuration configuration = new Configuration();
+    private static Connection connection;
 
-                configuration.addAnnotatedClass(Address.class)
-                        .addAnnotatedClass(StudentGroupSubjectLink.class)
-                        .addAnnotatedClass(Assessment.class)
-                        .addAnnotatedClass(Attend.class)
-                        .addAnnotatedClass(StudentGroup.class)
-                        .addAnnotatedClass(GroupRoom.class)
-                        .addAnnotatedClass(Lesson.class)
-                        .addAnnotatedClass(Parent.class)
-                        .addAnnotatedClass(Schedule.class)
-                        .addAnnotatedClass(School.class)
-                        .addAnnotatedClass(Student.class)
-                        .addAnnotatedClass(Subject.class)
-                        .addAnnotatedClass(Teacher.class);
-                configuration.configure("hibernateTestConfiguration.cfg.xml");
-                final SessionFactory sessionFactory = configuration.buildSessionFactory();
-                return sessionFactory;
-            } catch (Throwable e){
-                throw new ExceptionInInitializerError(e);
+    @BeforeAll
+    public static void beforeAll() {
+        try {
+            connection = DriverManager.getConnection("jdbc:h2:mem:school", "postgres", "postgres");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @AfterAll
+    public static void afterAll() {
+        try {
+
+            if (connection != null) {
+                connection.close();
             }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    protected static void verifyCreatedRow(final String tableName, final Integer id, final ResultSetVerifier verifier){
+        final String selectSql = "select * from " + tableName + " where id = ?";
+        try (PreparedStatement preparedStatement = connection.prepareStatement(selectSql)) {
+            preparedStatement.setInt(1, id);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            int rowCounter = 0;
+            while (resultSet.next()) {
+                rowCounter++;
+
+                if (rowCounter > 1) {
+                    continue;
+                }
+                verifier.verify(resultSet);
+            }
+            if (rowCounter != 1) {
+                Assertions.fail("Unexpected row number, must be 1 but is: " + rowCounter);
+            }
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
     }
 }
