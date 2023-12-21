@@ -30,7 +30,7 @@ public class SessionFactoryUtil {
                         .addAnnotatedClass(Teacher.class);
 
                 sessionFactory = configuration.buildSessionFactory();
-            } catch (HibernateException e){
+            } catch (final HibernateException e){
                 throw new SessionFactoryUtilException("Failed to create SessionFactory", e);
             }
 

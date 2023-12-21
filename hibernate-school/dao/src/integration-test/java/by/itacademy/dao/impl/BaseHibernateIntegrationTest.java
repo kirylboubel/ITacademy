@@ -9,10 +9,10 @@ import java.sql.*;
 
 public class BaseHibernateIntegrationTest {
     protected interface ResultSetVerifier {
-        void verify(ResultSet resultSet) throws SQLException;
+        void verify(final ResultSet resultSet) throws SQLException;
     }
 
-    private static Connection connection;
+    static Connection connection;
 
     @BeforeAll
     public static void beforeAll() {
@@ -37,10 +37,10 @@ public class BaseHibernateIntegrationTest {
 
     protected static void verifyCreatedRow(final String tableName, final Integer id, final ResultSetVerifier verifier){
         final String selectSql = "select * from " + tableName + " where id = ?";
-        try (PreparedStatement preparedStatement = connection.prepareStatement(selectSql)) {
+        try (final PreparedStatement preparedStatement = connection.prepareStatement(selectSql)) {
             preparedStatement.setInt(1, id);
 
-            ResultSet resultSet = preparedStatement.executeQuery();
+            final ResultSet resultSet = preparedStatement.executeQuery();
 
             int rowCounter = 0;
             while (resultSet.next()) {
@@ -54,7 +54,7 @@ public class BaseHibernateIntegrationTest {
             if (rowCounter != 1) {
                 Assertions.fail("Unexpected row number, must be 1 but is: " + rowCounter);
             }
-        } catch (SQLException e){
+        } catch (final SQLException e){
             e.printStackTrace();
         }
     }

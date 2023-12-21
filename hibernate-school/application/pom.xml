@@ -16,14 +16,17 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
         <dao.version>1.0-SNAPSHOT</dao.version>
+        <postgres.version>42.6.0</postgres.version>
     </properties>
 
     <dependencies>
         <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>3.8.1</version>
-            <scope>test</scope>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-core</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
         </dependency>
         <dependency>
             <groupId>by.itacademy</groupId>
@@ -37,6 +40,11 @@
                 <groupId>by.itacademy</groupId>
                 <artifactId>dao</artifactId>
                 <version>${dao.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.postgresql</groupId>
+                <artifactId>postgresql</artifactId>
+                <version>${postgres.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

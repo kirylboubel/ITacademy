@@ -16,7 +16,6 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
         <entity.version>1.0-SNAPSHOT</entity.version>
-        <postgres.version>42.6.0</postgres.version>
         <h2database.version>2.2.224</h2database.version>
         <mockito.version>5.5.0</mockito.version>
     </properties>
@@ -25,10 +24,6 @@
         <dependency>
             <groupId>by.itacademy</groupId>
             <artifactId>entity</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.postgresql</groupId>
-            <artifactId>postgresql</artifactId>
         </dependency>
         <dependency>
             <groupId>com.h2database</groupId>
@@ -50,6 +45,12 @@
             <groupId>org.mockito</groupId>
             <artifactId>mockito-junit-jupiter</artifactId>
         </dependency>
+        <dependency>
+            <groupId>org.hibernate.orm</groupId>
+            <artifactId>hibernate-core</artifactId>
+            <version>6.3.1.Final</version>
+            <scope>compile</scope>
+        </dependency>
     </dependencies>
 
     <dependencyManagement>
@@ -58,11 +59,6 @@
                 <groupId>by.itacademy</groupId>
                 <artifactId>entity</artifactId>
                 <version>${entity.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.postgresql</groupId>
-                <artifactId>postgresql</artifactId>
-                <version>${postgres.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.h2database</groupId>

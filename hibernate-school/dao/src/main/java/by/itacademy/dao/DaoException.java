@@ -1,7 +1,7 @@
 package by.itacademy.dao;
 
 public class DaoException extends Exception {
-    public DaoException(String message, Throwable cause) {
+    public DaoException(final String message, final Throwable cause) {
         super(message, cause);
     }
 
@@ -12,73 +12,73 @@ public class DaoException extends Exception {
     }
 
     public static class AssessmentDaoException extends DaoException {
-        public AssessmentDaoException(String message, Throwable cause) {
+        public AssessmentDaoException(final String message, final Throwable cause) {
             super(message, cause);
         }
     }
 
     public static class AttendDaoException extends DaoException {
-        public AttendDaoException(String message, Throwable cause) {
+        public AttendDaoException(final String message, final Throwable cause) {
             super(message, cause);
         }
     }
 
     public static class GroupRoomDaoException extends DaoException {
-        public GroupRoomDaoException(String message, Throwable cause) {
+        public GroupRoomDaoException(final String message, final Throwable cause) {
             super(message, cause);
         }
     }
 
     public static class LessonDaoException extends DaoException {
-        public LessonDaoException(String message, Throwable cause) {
+        public LessonDaoException(final String message, final Throwable cause) {
             super(message, cause);
         }
     }
 
     public static class ParentDaoException extends DaoException {
-        public ParentDaoException(String message, Throwable cause) {
+        public ParentDaoException(final String message, final Throwable cause) {
             super(message, cause);
         }
     }
 
     public static class ScheduleDaoException extends DaoException {
-        public ScheduleDaoException(String message, Throwable cause) {
+        public ScheduleDaoException(final String message, final Throwable cause) {
             super(message, cause);
         }
     }
 
     public static class SchoolDaoException extends DaoException {
-        public SchoolDaoException(String message, Throwable cause) {
+        public SchoolDaoException(final String message, final Throwable cause) {
             super(message, cause);
         }
     }
 
     public static class StudentDaoException extends DaoException {
-        public StudentDaoException(String message, Throwable cause) {
+        public StudentDaoException(final String message, final Throwable cause) {
             super(message, cause);
         }
     }
 
     public static class StudentGroupDaoException extends DaoException {
-        public StudentGroupDaoException(String message, Throwable cause) {
+        public StudentGroupDaoException(final String message, final Throwable cause) {
             super(message, cause);
         }
     }
 
     public static class SubjectDaoException extends DaoException {
-        public SubjectDaoException(String message, Throwable cause) {
+        public SubjectDaoException(final String message, final Throwable cause) {
             super(message, cause);
         }
     }
 
     public static class TeacherDaoException extends DaoException {
-        public TeacherDaoException(String message, Throwable cause) {
+        public TeacherDaoException(final String message, final Throwable cause) {
             super(message, cause);
         }
     }
 
     public static class StudentGroupSubjectLinkException extends DaoException{
-        public StudentGroupSubjectLinkException(String message, Throwable cause) {
+        public StudentGroupSubjectLinkException(final String message, final Throwable cause) {
             super(message, cause);
         }
     }
