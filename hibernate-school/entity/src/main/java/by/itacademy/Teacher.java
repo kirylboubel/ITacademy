@@ -11,58 +11,18 @@ import java.util.List;
 @Table(name = "teacher")
 public class Teacher extends BasePersonEntity {
     @ManyToMany(mappedBy = "teachers")
-    private List<School> schools;
+    private List<Subject> subjects;
 
-    @OneToMany(mappedBy = "groupOwner")
-    private List<StudentGroup> studentGroups;
-
-    @OneToMany(mappedBy = "teacher")
-    private List<StudentGroupSubjectLink> studentGroupSubjectLinks;
-
-    @OneToMany(mappedBy = "roomOwner")
-    private List<GroupRoom> groupRooms;
-
-    @OneToMany(mappedBy = "teacher")
-    private List<Lesson> lessons;
-
-
-    public List<School> getSchools() {
-        return schools;
+    public List<Subject> getSubjects() {
+        return subjects;
     }
 
-    public void setSchools(final List<School> schools) {
-        this.schools = schools;
+    public void setSubjects(List<Subject> subjects) {
+        this.subjects = subjects;
     }
 
-    public List<StudentGroup> getStudentGroups() {
-        return studentGroups;
-    }
-
-    public void setStudentGroups(final List<StudentGroup> studentGroups) {
-        this.studentGroups = studentGroups;
-    }
-
-    public List<StudentGroupSubjectLink> getStudentGroupSubjectLinks() {
-        return studentGroupSubjectLinks;
-    }
-
-    public void setStudentGroupSubjectLinks(final List<StudentGroupSubjectLink> studentGroupSubjectLinks) {
-        this.studentGroupSubjectLinks = studentGroupSubjectLinks;
-    }
-
-    public List<GroupRoom> getGroupRooms() {
-        return groupRooms;
-    }
-
-    public void setGroupRooms(final List<GroupRoom> groupRooms) {
-        this.groupRooms = groupRooms;
-    }
-
-    public List<Lesson> getLessons() {
-        return lessons;
-    }
-
-    public void setLessons(final List<Lesson> lessons) {
-        this.lessons = lessons;
+    @Override
+    public String toString() {
+        return "teacher_id = " + this.getId() + " first_name = " + this.getFirstName() + " last_name = " + this.getLastName();
     }
 }

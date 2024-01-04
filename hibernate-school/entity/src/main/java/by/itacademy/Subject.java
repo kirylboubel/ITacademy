@@ -9,29 +9,26 @@ import java.util.List;
 public class Subject extends BaseEntity {
     @Column(name = "name", nullable = false, length = 30)
     private String name;
+    @OneToMany(mappedBy = "subject")
+    private List<Assessment> assessments;
+
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinTable(
-            name = "school_subject",
+            name = "subject_teacher",
             joinColumns = @JoinColumn(
-                    name = "school_id",
-                    referencedColumnName = "id",
-                    nullable = false,
-                    foreignKey = @ForeignKey(name = "fk__school_subject__school_id")
-            ),
-            inverseJoinColumns = @JoinColumn(
                     name = "subject_id",
                     referencedColumnName = "id",
                     nullable = false,
-                    foreignKey = @ForeignKey(name = "fk__school_subject__subject_id")
+                    foreignKey = @ForeignKey(name = "fk__subject_teacher__subject_id")
+            ),
+            inverseJoinColumns = @JoinColumn(
+                    name = "teacher_id",
+                    referencedColumnName = "id",
+                    nullable = false,
+                    foreignKey = @ForeignKey(name = "fk__subject_teacher__teacher_id")
             )
     )
-    private List<School> schools;
-
-    @OneToMany(mappedBy = "subject")
-    private List<StudentGroupSubjectLink> studentGroupSubjectLinks;
-
-    @OneToMany(mappedBy = "subject")
-    private List<Lesson> lessons;
+    private List<Teacher> teachers;
 
     public String getName() {
         return name;
@@ -41,32 +38,24 @@ public class Subject extends BaseEntity {
         this.name = name;
     }
 
-    public List<School> getSchools() {
-        return schools;
+    public List<Assessment> getAssessments() {
+        return assessments;
     }
 
-    public void setSchools(final List<School> schools) {
-        this.schools = schools;
+    public void setAssessments(List<Assessment> assessments) {
+        this.assessments = assessments;
     }
 
-    public List<StudentGroupSubjectLink> getStudentGroupSubjectLinks() {
-        return studentGroupSubjectLinks;
+    public List<Teacher> getTeachers() {
+        return teachers;
     }
 
-    public void setStudentGroupSubjectLinks(final List<StudentGroupSubjectLink> studentGroupSubjectLinks) {
-        this.studentGroupSubjectLinks = studentGroupSubjectLinks;
-    }
-
-    public List<Lesson> getLessons() {
-        return lessons;
-    }
-
-    public void setLessons(final List<Lesson> lessons) {
-        this.lessons = lessons;
+    public void setTeachers(List<Teacher> teachers) {
+        this.teachers = teachers;
     }
 
     @Override
     public String toString() {
-        return "subject id: " + getId() + ", subject name: " + getName();
+        return "subject_id = " + this.getId() + ", subject_name = " + this.getName();
     }
 }

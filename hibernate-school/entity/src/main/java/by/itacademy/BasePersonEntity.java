@@ -2,6 +2,7 @@ package by.itacademy;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.MappedSuperclass;
+
 @MappedSuperclass
 public class BasePersonEntity extends BaseEntity {
     @Column(name = "first_name", nullable = false, length = 30)

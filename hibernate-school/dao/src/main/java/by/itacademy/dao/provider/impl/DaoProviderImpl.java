@@ -14,19 +14,10 @@ public class DaoProviderImpl implements DaoProvider {
 
     public DaoProviderImpl(final SessionFactory sessionFactory) {
         this.daoMap = new HashMap<>();
-        daoMap.put(Address.class, new AddressDao(sessionFactory));
-        daoMap.put(Assessment.class, new AddressDao(sessionFactory));
-        daoMap.put(Attend.class, new AddressDao(sessionFactory));
-        daoMap.put(GroupRoom.class, new GroupRoomDao(sessionFactory));
-        daoMap.put(Lesson.class, new LessonDao(sessionFactory));
-        daoMap.put(Parent.class, new ParentDao(sessionFactory));
-        daoMap.put(Schedule.class, new ScheduleDao(sessionFactory));
-        daoMap.put(School.class, new SchoolDao(sessionFactory));
+        daoMap.put(Assessment.class, new AssessmentDao(sessionFactory));
         daoMap.put(Student.class, new StudentDao(sessionFactory));
-        daoMap.put(StudentGroupSubjectLink.class, new StudentGroupSubjectLinkDao(sessionFactory));
         daoMap.put(Subject.class, new SubjectDao(sessionFactory));
         daoMap.put(Teacher.class, new TeacherDao(sessionFactory));
-        daoMap.put(StudentGroup.class, new StudentGroupDao(sessionFactory));
     }
 
     @SuppressWarnings("unchecked")

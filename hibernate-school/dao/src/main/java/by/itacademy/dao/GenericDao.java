@@ -3,14 +3,17 @@ package by.itacademy.dao;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.function.BiFunction;
 import java.util.function.Function;
-
+@Component
 public abstract class GenericDao<T> implements Dao<T> {
 
     private final Class<T> type;
     private final BiFunction<String, Exception, DaoException> exceptionCreator;
+    @Autowired
     private final SessionFactory sessionFactory;
 
     public GenericDao(

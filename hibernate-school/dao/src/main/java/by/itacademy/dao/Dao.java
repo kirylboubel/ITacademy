@@ -1,5 +1,8 @@
 package by.itacademy.dao;
 
+import org.springframework.stereotype.Service;
+
+
 public interface Dao<T> {
     void  create(T entity) throws DaoException;
 

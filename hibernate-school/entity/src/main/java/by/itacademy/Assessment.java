@@ -1,25 +1,18 @@
 package by.itacademy;
 
 import jakarta.persistence.*;
+import org.springframework.stereotype.Component;
 
 @Entity
 @Table(name = "assessment")
+@Component
 public class Assessment {
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private int id;
     @Column(name = "assessment")
     private Integer assessment;
-
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinColumn(
-            name = "lesson_id",
-            referencedColumnName = "id",
-            nullable = false,
-            foreignKey = @ForeignKey(name = "fk__assessment__lesson__id")
-    )
-    private Lesson lesson;
 
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(
@@ -29,15 +22,19 @@ public class Assessment {
             foreignKey = @ForeignKey(name = "fk__assessment__student__id")
     )
     private Student student;
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(
+            name = "subject_id",
+            referencedColumnName = "id",
+            foreignKey = @ForeignKey(name = "fk__assessment__subject__id")
+    )
+    private Subject subject;
 
-    public Assessment() {
-    }
-
-    public Long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -49,19 +46,24 @@ public class Assessment {
         this.assessment = assessment;
     }
 
-    public Lesson getLesson() {
-        return lesson;
-    }
-
-    public void setLesson(final Lesson lesson) {
-        this.lesson = lesson;
-    }
-
     public Student getStudent() {
         return student;
     }
 
     public void setStudent(final Student student) {
         this.student = student;
+    }
+
+    public Subject getSubject() {
+        return subject;
+    }
+
+    public void setSubject(Subject subject) {
+        this.subject = subject;
+    }
+
+    @Override
+    public String toString() {
+        return "assessment_id = " + this.getId() + " assessment = " + this.getAssessment();
     }
 }

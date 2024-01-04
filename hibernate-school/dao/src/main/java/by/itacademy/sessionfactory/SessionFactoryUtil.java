@@ -4,7 +4,9 @@ import by.itacademy.*;
 import org.hibernate.HibernateException;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
+import org.springframework.stereotype.Service;
 
+@Service
 public class SessionFactoryUtil {
     private static SessionFactory sessionFactory;
 
@@ -15,16 +17,7 @@ public class SessionFactoryUtil {
             try {
                 Configuration configuration = new Configuration().configure("hibernate.cfg.xml");
 
-                configuration.addAnnotatedClass(Address.class)
-                        .addAnnotatedClass(StudentGroupSubjectLink.class)
-                        .addAnnotatedClass(Assessment.class)
-                        .addAnnotatedClass(Attend.class)
-                        .addAnnotatedClass(StudentGroup.class)
-                        .addAnnotatedClass(GroupRoom.class)
-                        .addAnnotatedClass(Lesson.class)
-                        .addAnnotatedClass(Parent.class)
-                        .addAnnotatedClass(Schedule.class)
-                        .addAnnotatedClass(School.class)
+                configuration.addAnnotatedClass(Assessment.class)
                         .addAnnotatedClass(Student.class)
                         .addAnnotatedClass(Subject.class)
                         .addAnnotatedClass(Teacher.class);
