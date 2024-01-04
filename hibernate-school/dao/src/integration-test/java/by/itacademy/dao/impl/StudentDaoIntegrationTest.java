@@ -29,23 +29,26 @@ public class StudentDaoIntegrationTest extends BaseHibernateIntegrationTest {
             final String firstName = resultSet.getString("first_name");
             final String lastName = resultSet.getString("last_name");
 
-            Assertions.assertEquals(student.getId(), studentId);
-            Assertions.assertEquals(student.getFirstName(), firstName);
-            Assertions.assertEquals(student.getLastName(), lastName);
+            Assertions.assertEquals(studentId, student.getId());
+            Assertions.assertEquals(firstName, student.getFirstName());
+            Assertions.assertEquals(lastName, student.getLastName());
         };
         verifyCreatedRow("address", student.getId(), verifier);
     }
 
     @Test
     void testReadStudent_happyPath() throws SQLException, DaoException {
-        final Statement statement = connection.createStatement();
-        statement.executeUpdate("insert into student (first_name, last_name) values ('Petr', 'Varashylov')");
+        try (final Statement statement = connection.createStatement();){
 
-        final Student readStudent = STUDENT_DAO.read(1);
 
-        Assertions.assertEquals(readStudent.getId(), 1);
-        Assertions.assertEquals(readStudent.getFirstName(), "Petr");
-        Assertions.assertEquals(readStudent.getLastName(), "Varashylov");
+            statement.executeUpdate("insert into student (first_name, last_name) values ('Petr', 'Varashylov')");
+
+            final Student readStudent = STUDENT_DAO.read(1);
+
+            Assertions.assertEquals(1, readStudent.getId());
+            Assertions.assertEquals("Petr", readStudent.getFirstName());
+            Assertions.assertEquals("Varashylov", readStudent.getLastName());
+        }
     }
 
     @Test
@@ -55,22 +58,23 @@ public class StudentDaoIntegrationTest extends BaseHibernateIntegrationTest {
         student.setFirstName("Kiryl");
         student.setLastName("Varashylov");
 
-        final Statement statement = connection.createStatement();
-        statement.executeUpdate("insert into student (first_name, last_name) values ('Kiryl', 'Boubel')");
-        STUDENT_DAO.update(student);
+        try (final Statement statement = connection.createStatement();){
+            statement.executeUpdate("insert into student (first_name, last_name) values ('Kiryl', 'Boubel')");
+            STUDENT_DAO.update(student);
 
-        final String selectSql = "select * from student where id = 1";
-        try (final PreparedStatement preparedStatement = connection.prepareStatement(selectSql)) {
-            final ResultSet resultSet = preparedStatement.executeQuery();
+            final String selectSql = "select * from student where id = 1";
+            try (final PreparedStatement preparedStatement = connection.prepareStatement(selectSql)) {
+                final ResultSet resultSet = preparedStatement.executeQuery();
 
-            while (resultSet.next()) {
-                final Integer studentId = resultSet.getInt("id");
-                final String studentFirstName = resultSet.getString("first_name");
-                final String studentLastName = resultSet.getString("last_name");
+                while (resultSet.next()) {
+                    final Integer studentId = resultSet.getInt("id");
+                    final String studentFirstName = resultSet.getString("first_name");
+                    final String studentLastName = resultSet.getString("last_name");
 
-                Assertions.assertEquals(1, studentId);
-                Assertions.assertEquals("Kiryl", studentFirstName);
-                Assertions.assertEquals("Varashylov", studentLastName);
+                    Assertions.assertEquals(1, studentId);
+                    Assertions.assertEquals("Kiryl", studentFirstName);
+                    Assertions.assertEquals("Varashylov", studentLastName);
+                }
             }
         }
     }

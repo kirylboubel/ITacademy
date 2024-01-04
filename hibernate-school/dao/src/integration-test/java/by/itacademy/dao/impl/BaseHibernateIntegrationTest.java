@@ -4,6 +4,7 @@ import by.itacademy.dao.DaoException;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 
 import java.sql.*;
 
@@ -14,8 +15,8 @@ public class BaseHibernateIntegrationTest {
 
     static Connection connection;
 
-    @BeforeAll
-    public static void beforeAll() {
+    @BeforeEach
+    public void beforeEach() {
         try {
             connection = DriverManager.getConnection("jdbc:h2:mem:school", "postgres", "postgres");
         } catch (SQLException e) {
