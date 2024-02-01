@@ -1,5 +1,6 @@
 package by.itacademy.service.impl;
 
+import by.itacademy.aspect.annotation.ExecutionTime;
 import by.itacademy.controller.dto.StudentDto;
 import by.itacademy.entity.Student;
 import by.itacademy.service.StudentService;
@@ -19,6 +20,7 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Transactional
+    @ExecutionTime
     @Override
     public Integer create(StudentDto studentDto) {
         final Student student = new Student();
@@ -30,6 +32,7 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Transactional
+    @ExecutionTime
     @Override
     public StudentDto read(Integer id) {
         final Student student = sessionFactory.getCurrentSession().find(Student.class, id);

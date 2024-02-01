@@ -2,6 +2,7 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
+
   <groupId>by.itacademy</groupId>
   <artifactId>lesson-23-01-24</artifactId>
   <version>1.0-SNAPSHOT</version>
@@ -53,13 +54,13 @@
       <groupId>org.aspectj</groupId>
       <artifactId>aspectjrt</artifactId>
       <version>${aspectj.version}</version>
-      <scope>runtime</scope>
+<!--      <scope>runtime</scope>-->
     </dependency>
     <dependency>
       <groupId>org.aspectj</groupId>
       <artifactId>aspectjweaver</artifactId>
       <version>${aspectj.version}</version>
-      <scope>runtime</scope>
+<!--      <scope>runtime</scope>-->
     </dependency>
     <dependency>
       <groupId>jakarta.persistence</groupId>
@@ -106,7 +107,7 @@
       <groupId>ch.qos.logback</groupId>
       <artifactId>logback-classic</artifactId>
       <version>${logback.version}</version>
-      <scope>test</scope>
+<!--      <scope>test</scope>-->
     </dependency>
     <dependency>
       <groupId>org.slf4j</groupId>

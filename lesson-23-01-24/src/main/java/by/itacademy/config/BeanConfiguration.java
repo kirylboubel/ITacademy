@@ -10,7 +10,7 @@ import org.springframework.context.annotation.*;
 
 @Configuration
 @ComponentScan(basePackages = "by.itacademy")
-@PropertySource({"classpath:application.properties", "classpath:logback.xml"})
+@PropertySource("classpath:application.properties")
 public class BeanConfiguration {
 
 }

@@ -1,8 +1,14 @@
 package by.itacademy.controller.dto;
 
+import jakarta.validation.constraints.NotBlank;
+
 public class StudentDto {
     private Integer id;
+
+    @NotBlank
     private String firstName;
+
+    @NotBlank
     private String lastName;
 
     public StudentDto() {

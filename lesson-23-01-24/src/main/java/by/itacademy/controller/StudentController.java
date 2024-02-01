@@ -1,10 +1,12 @@
 package by.itacademy.controller;
 
+import by.itacademy.aspect.annotation.ExecutionTime;
 import by.itacademy.controller.dto.StudentDto;
 import by.itacademy.service.StudentService;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Min;
+import jdk.jfr.Experimental;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +27,7 @@ public class StudentController {
         this.studentService = studentService;
     }
 
-    @GetMapping(path = "/get/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(path = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     @Transactional
     public StudentDto getStudent(@PathVariable(name = "id") @Min(value = 1, message = "Id value must be more then 0") final Integer id) {
         LOGGER.info("getStudent() - id [{}]", id);
